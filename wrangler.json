@@ -4,8 +4,8 @@
 	"compatibility_date": "2025-10-08",
 	"routes": [
 		{
-			"pattern": "weexcel.cookjam.co.uk",
-			"custom_domain": true
+			"pattern": "weexcel.cookjam.co.uk/*",
+			"zone_name": "cookjam.co.uk"
 		}
 	],
 	"workers_dev": false,
