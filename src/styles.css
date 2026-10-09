@@ -1,19 +1,18 @@
 /* CookJam brand tokens, matching the main app's src/index.css. */
 :root {
 	color-scheme: light dark;
-	--background: #eee9e7;
+	--background: #ffffff;
 	--foreground: #100d0b;
 	--muted-foreground: #666666;
 	--primary: #df7241;
-	--primary-foreground: #100d0b;
 	--ring: #100d0b;
 	--radius: 0.5rem;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
-		--background: #100d0b;
-		--foreground: #fafafa;
+		--background: #ffffff;
+		--foreground: #100d0b;
 		--muted-foreground: #97a3b4;
 		--ring: #df7241;
 	}
@@ -58,6 +57,13 @@ h1 {
 	line-height: 1.1;
 }
 
+h2 {
+	margin: 0 0 1.5rem;
+	color: var(--foreground);
+	font-size: 1.8rem;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+}
 /* The animation's frames are opaque white, so it sits as a rounded card. */
 .oven {
 	width: min(100%, 20rem);
@@ -65,7 +71,7 @@ h1 {
 	margin: 0 auto 1.5rem;
 	overflow: hidden;
 	border-radius: var(--radius);
-	background: #ffffff;
+	background: --background;
 }
 
 .lead {
@@ -79,11 +85,11 @@ h1 {
 	align-items: center;
 	justify-content: center;
 	min-height: 3rem;
-	padding: 0 1.5rem;
+	padding: 0 1.75rem;
 	border-radius: var(--radius);
 	background: var(--primary);
-	color: var(--primary-foreground);
-	font-weight: 600;
+	color: #ffffff;
+	font-weight: 700;
 	text-decoration: none;
 }
 
