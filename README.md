@@ -1,8 +1,8 @@
 # weexcel
 
-Landing page served at **weexcel.cookjam.co.uk**. For now it says "In construction" and links to [cookjam.co.uk](https://cookjam.co.uk/).
+Landing page served at **weexcel.cookjam.co.uk**. For now it says "In the oven", plays the "In the oven" Lottie animation under the heading, and links to [cookjam.co.uk](https://cookjam.co.uk/). bap.cookjam.co.uk plays the same animation.
 
-It is a static-assets-only Cloudflare Worker built with Vite and the Cloudflare Vite plugin. There is no Worker script and no JavaScript on the page.
+It is a static-assets-only Cloudflare Worker built with Vite and the Cloudflare Vite plugin. There is no Worker script. The only JavaScript on the page is the Lottie player and its loader, both served from this origin, so the CSP allows `script-src 'self'` and nothing else.
 
 ## Layout
 
@@ -10,7 +10,10 @@ It is a static-assets-only Cloudflare Worker built with Vite and the Cloudflare 
 | ----------------- | ------------------------------------------------------------------------------------------------ |
 | `index.html`      | The page.                                                                                        |
 | `src/styles.css`  | All styling. Colours are the CookJam brand tokens from the main app's `src/index.css`.           |
-| `public/_headers` | Security headers (CSP, nosniff, referrer policy), `noindex`, and long caching for hashed assets. |
+| `public/_headers` | Security headers (CSP, nosniff, referrer policy), `noindex`, and long caching for hashed assets. The CSP allows same-origin scripts, same-origin `fetch` (`connect-src`) for the animation JSON, and `data:` images for the frames embedded in it. |
+| `public/in-the-oven.json` | The Lottie animation: 91 frames, each an embedded WebP with an opaque white background, so the page shows it as a rounded white card. Its greens were recoloured in the frame pixels from #34d084 to #8bab8f; the original is `other-files/lottie-files/in-the-oven.json` in `cookjam-web-otp-working`. |
+| `public/lottie_light.min.js` | lottie-web 5.13.0's light player (MIT), unmodified. It has no expression support, so it never needs `unsafe-eval`. |
+| `public/in-the-oven.js` | Starts the animation in `#in-the-oven`. With `prefers-reduced-motion: reduce` it shows one still frame instead of playing. |
 | `wrangler.json`   | Worker config. Routes `weexcel.cookjam.co.uk/*` to the Worker; `workers.dev` is off.             |
 
 ## Commands
